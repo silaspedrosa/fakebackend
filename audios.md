@@ -217,26 +217,78 @@ Vê mermo:
 Agora melhorando a função do getAll:
 ![get all pelo schema](./assets/images/get-all-schema.png)
 
-## operações com o bd
+Seeds simples!:
+![seeds](assets/images/seeds-simple.png)
 
-## relacionamentos
+RESTful routes:
+![restful routes](assets/images/rest-routes.png)
 
-## GO NUTS! afterCreate, dependent attributes
+Atalhos!
+![shorthands](assets/images/routes-shorthands.png)
+
+O atalho mais rochedo pra tudo:
+![resource shorthand](assets/images/resource-shorthand.png)
 
 ## factories and traits
 
+- seed eh legal, mas trabalhoso e limitado
+- factories permitem abstrair muita coisa, usando indices, coisas aleatorias e turbo com faker
+- factories permitem extender e/ou definir so o necessario, muito legal
+
+## Serializers
+
+- json api
+- activemodel
+- rest
+
+## relacionamentos
+
+- belongs to
+- has many
+- o que muda nas rotas
+- o que muda nos forms
+- o que muda nas queries
+- o que muda nas factories
+
+# Agora na vera
+
+Mostrar a aplicacão atual
+
+## revisar o que poderia ser feito pra mockar dados
+
+- direto na view
+- model no component
+- service alterado
+- mirage simples
+
+## Listagem
+
+- filtros simples
+- paginacao
+- filtro auto complete entidade relacionada
+
+## Form via modal
+
+- validacao uniqueness
+- validacao formato
+- validacao relativa entre campos
+
+* normalizeAttrs
+
+# Testes
+
+- Formato inesperado de dados
+- manipulando seeds para casos de testes
+  - listas vazias
+  - listas enormes, testar paginacao
+  - erros de form de uniqueness
+
+## GO NUTS! afterCreate, dependent attributes
+
 ## complexidade só o necessário, quando necessário
 
-## delay
+## finalizando
 
-## serializers: JSONAPI, ActiveModel, RestSerializer
-
-## mockando testes
-
-## mirage no angular
-
-## mirage no react
-
-## other tools: pretender
-
-## protótipo de altíssima fidelidade
+- angular, react, etc.
+- other tools: pretender
+- protótipo de altíssima fidelidade
