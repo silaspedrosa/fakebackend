@@ -43,6 +43,8 @@ a intenção é eu passar de slide e dar a impressão de que foi adicionada algu
 -----****
 ```
 
+![silly JS gif](assets/images/js-switch.gif)
+
 > Bora botar JS. Dar dinamicidade. Mudar cor, movimentar elementos, inputs, etc.
 
 ```
