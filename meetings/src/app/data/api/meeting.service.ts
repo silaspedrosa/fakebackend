@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MeetingQuery, Meeting } from "../models";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { Success, RemoteData, Failure } from "../utils";
 import { of } from "rxjs";
@@ -13,6 +13,7 @@ export class MeetingService {
   async getAll(
     query: Partial<MeetingQuery> = {}
   ): Promise<RemoteData<Meeting[]>> {
+    // return new Failure(new HttpErrorResponse({status: 400}));
     try {
       const result = await of([
         {
