@@ -546,11 +546,110 @@ GEORGE:
 
 ## 4.3 factories and traits
 
-TODO: botar prints de codigos
+```
+GEORGE:
 
-- seed eh legal, mas trabalhoso e limitado
-- factories permitem abstrair muita coisa, usando indices, coisas aleatorias e turbo com faker
-- factories permitem extender e/ou definir so o necessario, muito legal
+1. slide para essa nova subsecao. pode conter fotos dando ideia de linha de producao, fabrica, etc.
+```
+
+> seed eh legal, mas trabalhoso e limitado
+>
+> factories permitem abstrair muita coisa, usando indices, coisas aleatorias e turbo com faker
+>
+> factories permitem extender e/ou definir so o necessario, muito legal
+
+```
+GEORGE:
+
+1. slide a primeira imagem e com título: "Factory simplezinha"
+2. slide igual ao anterior, adicionando a segunda imagem
+```
+
+![factories](assets/images/factory-1.png)
+![factories](assets/images/factory-2.png)
+
+```
+GEORGE:
+
+1. slide com primeira imagem e título: "Factory com campo maroto"
+2. slide igual ao anterior, adicionando as duas próximas imagens
+```
+
+![factories](assets/images/factory-3.png)
+![factories](assets/images/factory-4.png)
+![factories](assets/images/factory-5.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Factory com Faker"
+```
+
+![factories](assets/images/factory-6-complex-fields-faker.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Factory com relacionamento fixo"
+```
+
+![factories](assets/images/factory-7-relationships.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Factory com relacionamento encadeado"
+```
+
+![factories](assets/images/factory-8-relationships.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Factory com **vários** relacionamentos encadeados". Aqui, tu pode fazer um jogo com slide passado, meio que adicionando de uma forma 'divertida' a palavra 'vários' e os plurais de 'relacionamento' e 'encadeado'
+```
+
+![factories](assets/images/factory-9-relationships.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Factory e afterCreate". A palavra afterCreate pode ser com alguma fonte monospace, pra dar a ideia de código.
+```
+
+![factories](assets/images/factory-10-after-create.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Traits - agrupando campos"
+```
+
+![factories](assets/images/factory-11-trait.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Traits - uso"
+```
+
+![factories](assets/images/factory-12-trait-call.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Traits & afterCreate & relacionamentos". Esse '&' pode ser uma brincadeira com aquela moda que a turma faz, colocando várias palavras, cada uma em uma linha, separadas por '&'.
+```
+
+![factories](assets/images/factory-13-trait-after-create.png)
+
+```
+GEORGE:
+
+1. slide com imagem e título: "Traits & afterCreate & relacionamentos & shorthand". Note que adicionei uma palavra
+```
+
+![factories](assets/images/factory-14-trait-association.png)
 
 ## Serializers
 
