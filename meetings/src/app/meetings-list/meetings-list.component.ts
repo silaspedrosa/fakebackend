@@ -12,7 +12,8 @@ export class MeetingsListComponent implements OnInit {
   meetings: RemoteData<Meeting[]>;
   meetingQuery: Partial<MeetingQuery> = {
     page: 1,
-    pageSize: 10
+    pageSize: 10,
+    status: "All"
   };
 
   constructor(private readonly meetingService: MeetingService) {}

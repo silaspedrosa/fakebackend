@@ -1,34 +1,69 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Subjects</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container
-      *ngIf="meetings == null || meetings.isInProgress; else hasData"
-    >
-      loading...
-    </ng-container>
-    <ng-template #hasData>
-      <ng-container *ngIf="meetings.isFailure">erro...</ng-container>
-      <ng-container *ngIf="meetings.isSuccess">
-        <tr *ngFor="let meeting of meetings.data">
-          <td>15/03/2020</td>
-          <td>
-            5
-          </td>
-          <td>Finished</td>
-        </tr>
+<div class="container">
+  <h1 class="my-3">Meetings</h1>
+  <form class="row align-items-end" (submit)="fetchData()">
+    <div class="form-group mr-2 col-4">
+      <label for="search">Search</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <img src="/assets/icons/search.svg" alt="" />
+          </div>
+        </div>
+        <input
+          class="form-control"
+          name="search"
+          aria-describedby="searchHelp"
+          [(ngModel)]="meetingQuery.search"
+        />
+      </div>
+    </div>
+    <div class="form-group mr-2 col-3">
+      <label for="status">Status</label>
+      <select
+        name="status"
+        class="form-control"
+        [(ngModel)]="meetingQuery.status"
+      >
+        <option value="All" selected>All</option>
+        <option value="Open">Open</option>
+        <option value="Closed">Closed</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">Search</button>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Subjects</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *ngIf="meetings == null || meetings.isInProgress; else hasData"
+      >
+        <span class="full-width">loading...</span>
+        <!-- loading... -->
       </ng-container>
-    </ng-template>
-  </tbody>
-</table>
-<ngb-pagination
-  [page]="meetingQuery.page"
-  (pageChange)="changePage($event)"
-  [pageSize]="10"
-  [collectionSize]="100"
-></ngb-pagination>
+      <ng-template #hasData>
+        <ng-container *ngIf="meetings.isFailure">erro...</ng-container>
+        <ng-container *ngIf="meetings.isSuccess">
+          <tr *ngFor="let meeting of meetings.data">
+            <td>15/03/2020</td>
+            <td>
+              5
+            </td>
+            <td>Finished</td>
+          </tr>
+        </ng-container>
+      </ng-template>
+    </tbody>
+  </table>
+  <ngb-pagination
+    [page]="meetingQuery.page"
+    (pageChange)="changePage($event)"
+    [pageSize]="10"
+    [collectionSize]="100"
+  ></ngb-pagination>
+</div>

@@ -14,7 +14,7 @@ export interface Subject {
   meetingId: number;
 }
 
-function toHttpParams(obj: any): HttpParams {
+export function toHttpParams(obj: any): HttpParams {
   let params = new HttpParams();
   Object.entries(obj).forEach(([key, value]) => {
     if (value != null) {
