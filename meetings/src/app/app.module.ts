@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MeetingsFormComponent } from "./meetings-form/meetings-form.component";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { SubjectsListComponent } from "./subjects-list/subjects-list.component";
+import { MeetingsFiltersComponent } from './meetings-list/meetings-filters/meetings-filters.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SubjectsListComponent } from "./subjects-list/subjects-list.component";
     MeetingsListComponent,
     MeetingsFormComponent,
     SpinnerComponent,
-    SubjectsListComponent
+    SubjectsListComponent,
+    MeetingsFiltersComponent
   ],
   imports: [
     NgbModule,

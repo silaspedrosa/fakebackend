@@ -5,37 +5,10 @@
       Novo +
     </button>
   </div>
-  <form class="row align-items-end" (submit)="submitFilters()">
-    <div class="form-group mr-2 col-4">
-      <label for="search">Search</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <img src="/assets/icons/search.svg" alt="" />
-          </div>
-        </div>
-        <input
-          class="form-control"
-          name="search"
-          aria-describedby="searchHelp"
-          [(ngModel)]="meetingQuery.search"
-        />
-      </div>
-    </div>
-    <div class="form-group mr-2 col-3">
-      <label for="status">Status</label>
-      <select
-        name="status"
-        class="form-control"
-        [(ngModel)]="meetingQuery.status"
-      >
-        <option value="All" selected>All</option>
-        <option value="Open">Open</option>
-        <option value="Closed">Closed</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary mb-3">Search</button>
-  </form>
+  <app-meetings-filters
+    [meetingQuery]="meetingQuery"
+    (submit)="submitFilters()"
+  ></app-meetings-filters>
   <table class="table table-striped">
     <thead>
       <tr>
