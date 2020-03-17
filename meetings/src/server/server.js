@@ -11,7 +11,7 @@ import {
 } from "miragejs";
 import { environment } from "../environments/environment";
 import faker from "faker";
-import { isAfter } from "date-fns";
+import { isAfter, subYears, differenceInYears } from "date-fns";
 
 const ApplicationSerializer = RestSerializer.extend({
   embed: true
@@ -67,8 +67,6 @@ export function makeServer() {
         const search = request.queryParams.search;
         const status = request.queryParams.status;
 
-        console.log(schema.meetings.all());
-
         return schema.meetings
           .all()
           .filter(fullTextSearch(search))
@@ -78,24 +76,37 @@ export function makeServer() {
       });
 
       this.post("/meetings", function(schema, request) {
-        let attrs = JSON.parse(request.requestBody).meeting;
-        console.log(attrs);
-        if (attrs.description == null || attrs.description.length === 0) {
-          return new Response(
-            406,
-            {},
-            { errors: ["Description cannot be blank"] }
-          );
+        try {
+          const attrs = JSON.parse(request.requestBody).meeting;
+          const date = new Date(attrs.year, attrs.month - 1, attrs.day);
+
+          if (attrs.description == null || attrs.description.length === 0) {
+            return new Response(
+              406,
+              {},
+              { errors: ["Description cannot be blank"] }
+            );
+          } else if (Math.abs(differenceInYears(date, new Date()) > 100)) {
+            return new Response(406, {}, { errors: ["Invalid date"] });
+          }
+
+          const subjects = attrs.subjects;
+          attrs.subjects = null;
+          const meeting = schema.meetings.create({
+            ...{
+              status: "Open",
+              date: new Date(attrs.year, attrs.month - 1, attrs.day),
+              description: ""
+            },
+            ...attrs
+          });
+          subjects.forEach(s => {
+            schema.subjects.create({ ...s, meeting });
+          });
+          return meeting;
+        } catch (error) {
+          console.log(error);
         }
-        return schema.meetings.create({
-          ...{
-            status: "Open",
-            date: new Date(attrs.year, attrs.month - 1, attrs.day),
-            subjectCount: 0,
-            description: ""
-          },
-          ...attrs
-        });
       });
     },
     seeds: server => {
@@ -113,7 +124,6 @@ function fullTextSearch(search) {
       .replace(/ /g, "")
       .toLowerCase();
     const normalizedSearch = search.replace(/ /g, "").toLowerCase();
-    console.log(fullText);
     return fullText.indexOf(normalizedSearch) !== -1;
   };
 }

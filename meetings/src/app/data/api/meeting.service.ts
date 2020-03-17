@@ -13,7 +13,6 @@ export class MeetingService {
   async getAll(
     query: Partial<MeetingQuery> = {}
   ): Promise<RemoteData<Meeting[]>> {
-    console.log("received query", query);
     // return new Failure(new HttpErrorResponse({status: 400}));
     try {
       // const result = await of([
@@ -31,7 +30,6 @@ export class MeetingService {
           params: toHttpParams(query)
         })
         .toPromise();
-      console.log(result);
       return new Success<Meeting[]>(result.meetings);
     } catch (error) {
       return new Failure(error);

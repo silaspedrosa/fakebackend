@@ -61,12 +61,14 @@ export class MeetingsFormComponent implements OnInit {
     this.error = null;
     this.request = new InProgress();
     console.log(this.form.value);
-    const result = await this.meetingService.create(this.form.value);
-    if (result instanceof Success) {
-      this.modal.close(result);
-    } else if (result instanceof Failure) {
-      this.error = result.error.message;
-      this.request = null;
+    this.request = await this.meetingService.create(this.form.value);
+    if (this.request instanceof Success) {
+      this.modal.close(this.request);
+    } else if (this.request instanceof Failure) {
+      console.log(this.request);
+      this.error =
+        this.request.error?.error?.errors[0] ||
+        "Sorry, we couldn't process your action";
     }
   }
 
