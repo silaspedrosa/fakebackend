@@ -7,6 +7,9 @@ import { MeetingsListComponent } from "./meetings-list.component";
 import { Success, RemoteData } from "../data/utils";
 import { of } from "rxjs";
 import { delay } from "rxjs/operators";
+import { MeetingsTitleComponent } from "./meetings-title/meetings-title.component";
+import { MeetingsTableComponent } from "./meetings-table/meetings-table.component";
+import { MeetingsFiltersComponent } from "./meetings-filters/meetings-filters.component";
 
 describe("MeetingsListComponent", () => {
   let component: MeetingsListComponent;
@@ -44,7 +47,12 @@ describe("MeetingsListComponent", () => {
   beforeEach(async(() => {
     server = makeServer("test");
     TestBed.configureTestingModule({
-      declarations: [MeetingsListComponent],
+      declarations: [
+        MeetingsListComponent,
+        MeetingsTitleComponent,
+        MeetingsTableComponent,
+        MeetingsFiltersComponent
+      ],
       imports: [HttpClientModule, NgbModule],
       providers: [MeetingService, HttpClient, NgbModal]
     }).compileComponents();
