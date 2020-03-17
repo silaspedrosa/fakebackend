@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Meeting, MeetingQuery } from "../data/models";
 import { RemoteData, InProgress } from "../data/utils";
 import { MeetingService } from "../data/api/meeting.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { MeetingsFormComponent } from "../meetings-form/meetings-form.component";
 
 @Component({
   selector: "app-meetings-list",
@@ -16,7 +18,10 @@ export class MeetingsListComponent implements OnInit {
     status: "All"
   };
 
-  constructor(private readonly meetingService: MeetingService) {}
+  constructor(
+    private readonly meetingService: MeetingService,
+    private readonly ngbModal: NgbModal
+  ) {}
 
   async ngOnInit() {
     await this.fetchData();
@@ -31,5 +36,15 @@ export class MeetingsListComponent implements OnInit {
     console.log("changePage", page);
     this.meetingQuery.page = page;
     await this.fetchData();
+  }
+
+  async openForm() {
+    const ref = this.ngbModal.open(MeetingsFormComponent);
+    try {
+      const result = await ref.result;
+      if (result != null) {
+        await this.fetchData();
+      }
+    } catch (error) {}
   }
 }

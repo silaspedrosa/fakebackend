@@ -1,5 +1,10 @@
 <div class="container">
-  <h1 class="my-3">Meetings</h1>
+  <div class="row align-items-center">
+    <h1 class="my-3">Meetings</h1>
+    <button class="btn btn-outline-secondary ml-3" (click)="openForm()">
+      Novo +
+    </button>
+  </div>
   <form class="row align-items-end" (submit)="fetchData()">
     <div class="form-group mr-2 col-4">
       <label for="search">Search</label>
@@ -36,6 +41,7 @@
       <tr>
         <th scope="col">Date</th>
         <th scope="col">Subjects</th>
+        <th scope="col">Description</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
@@ -43,18 +49,22 @@
       <ng-container
         *ngIf="meetings == null || meetings.isInProgress; else hasData"
       >
-        <span class="full-width">loading...</span>
-        <!-- loading... -->
+        <tr>
+          <td colspan="4" class="position-relative" style="height: 200px">
+            <app-spinner></app-spinner>
+          </td>
+        </tr>
       </ng-container>
       <ng-template #hasData>
         <ng-container *ngIf="meetings.isFailure">erro...</ng-container>
         <ng-container *ngIf="meetings.isSuccess">
           <tr *ngFor="let meeting of meetings.data">
-            <td>15/03/2020</td>
+            <td>{{ meeting.date | date: "dd/MM/yyyy" }}</td>
             <td>
-              5
+              {{ meeting.subjectCount }}
             </td>
-            <td>Finished</td>
+            <td>{{ meeting.description }}</td>
+            <td>{{ meeting.status }}</td>
           </tr>
         </ng-container>
       </ng-template>
@@ -67,3 +77,4 @@
     [collectionSize]="100"
   ></ngb-pagination>
 </div>
+<!-- <app-meetings-form></app-meetings-form> -->
