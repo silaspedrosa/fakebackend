@@ -61,7 +61,7 @@
           <tr *ngFor="let meeting of meetings.data">
             <td>{{ meeting.date | date: "dd/MM/yyyy" }}</td>
             <td>
-              {{ meeting.subjectCount }}
+              {{ meeting.subjects.length }}
             </td>
             <td>{{ meeting.description }}</td>
             <td>{{ meeting.status }}</td>

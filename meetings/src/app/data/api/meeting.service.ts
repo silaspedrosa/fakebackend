@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MeetingQuery, Meeting, toHttpParams } from "../models";
+import { MeetingQuery, Meeting, toHttpParams, Subject } from "../models";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { Success, RemoteData, Failure } from "../utils";

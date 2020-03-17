@@ -1,20 +1,59 @@
-import { Server, RestSerializer, Model, Factory, Response } from "miragejs";
+import {
+  Server,
+  RestSerializer,
+  Model,
+  Factory,
+  Response,
+  hasMany,
+  belongsTo,
+  trait,
+  association
+} from "miragejs";
 import { environment } from "../environments/environment";
 import faker from "faker";
 import { isAfter } from "date-fns";
 
+const ApplicationSerializer = RestSerializer.extend({
+  embed: true
+});
+
 export function makeServer() {
   return new Server({
-    serializers: RestSerializer,
+    serializers: {
+      application: ApplicationSerializer,
+      meeting: ApplicationSerializer.extend({
+        include: ["subjects"]
+      }),
+      subject: ApplicationSerializer.extend({
+        include: ["meeting"]
+      })
+    },
     models: {
-      meeting: Model
+      meeting: Model.extend({
+        subjects: hasMany()
+      }),
+      subject: Model.extend({
+        meeting: belongsTo()
+      })
     },
     factories: {
       meeting: Factory.extend({
         status: i => ["Open", "Closed"][i % 2],
         date: () => faker.date.past(), //.toLocaleDateString(),
-        subjectCount: i => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0][i % 10],
-        description: () => faker.lorem.words(3)
+        description: () => faker.lorem.words(3),
+        withSubjects: trait({
+          afterCreate(meeting, server) {
+            const count = Math.floor(Math.random() * 10);
+            server.createList("subject", count, { meeting });
+          }
+        })
+      }),
+      subject: Factory.extend({
+        title: () =>
+          `${faker.company.bsAdjective()} ${faker.hacker.verb} ${
+            faker.internet.domainName
+          }`,
+        meeting: association()
       })
     },
     routes() {
@@ -23,7 +62,8 @@ export function makeServer() {
       this.passthrough();
       this.timing = 1000;
 
-      // this.resource("meetings");
+      this.resource("meetings");
+      this.resource("subjects");
       this.get("/meetings", (schema, request) => {
         const page = parseInt(request.queryParams.page) || 1;
         const pageSize = parseInt(request.queryParams.pageSize) || 10;
@@ -38,10 +78,6 @@ export function makeServer() {
           .filter(filterByStatus(status))
           .sort((a, b) => (isAfter(a.date, b.date) ? -1 : 1))
           .slice(...paginate(page, pageSize));
-        // .filter(m => {
-        //   if (request.)
-        //   m.indexOf(re)
-        // })
       });
 
       this.post("/meetings", function(schema, request) {
@@ -63,18 +99,12 @@ export function makeServer() {
           },
           ...attrs
         });
-        // } else {
-        //   console.log("caiu no else");
-        //   return new Response(
-        //     400,
-        //     { some: "header" },
-        //     { errors: ["name cannot be blank"] }
-        //   );
-        // }
       });
     },
     seeds: server => {
-      server.createList("meeting", 20);
+      server.createList("meeting", 10, "withSubjects");
+      server.createList("meeting", 10, "withSubjects");
+      // server.createList("meeting", 10);
     }
   });
 }

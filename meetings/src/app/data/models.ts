@@ -3,9 +3,9 @@ import { HttpParams } from "@angular/common/http";
 export interface Meeting {
   id: number;
   date: string;
-  subjectCount: number;
   status: string;
   description: string;
+  subjects: Subject[];
 }
 
 export interface Subject {

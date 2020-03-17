@@ -48,4 +48,13 @@ export class MeetingsListComponent implements OnInit {
       }
     } catch (error) {}
   }
+
+  // async onMeetingClick(meeting: Meeting) {
+  //   try {
+  //     const result = await this.meetingService.getSubjects(meeting.id);
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }
