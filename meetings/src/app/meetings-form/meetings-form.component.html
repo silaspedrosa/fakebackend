@@ -1,4 +1,4 @@
-<form (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">New Meeting</h4>
     <button type="button" class="close" aria-label="Close" (click)="dismiss()">
@@ -14,7 +14,7 @@
           type="number"
           class="form-control"
           name="year"
-          [(ngModel)]="model.year"
+          formControlName="year"
         />
       </div>
       <div class="form-group col-md-3">
@@ -23,7 +23,7 @@
           type="number"
           class="form-control"
           name="month"
-          [(ngModel)]="model.month"
+          formControlName="month"
         />
       </div>
       <div class="form-group col-md-3">
@@ -32,7 +32,7 @@
           type="number"
           class="form-control"
           name="day"
-          [(ngModel)]="model.day"
+          formControlName="day"
         />
       </div>
     </div>
@@ -42,8 +42,31 @@
         <textarea
           class="form-control"
           name="description"
-          [(ngModel)]="model.description"
+          formControlName="description"
         ></textarea>
+      </div>
+    </div>
+    <div class="row align-items-center m-0">
+      <h5 class="mr-3">Subjects</h5>
+      <button type="button" class="btn btn-info" (click)="addSubject()">
+        +
+      </button>
+    </div>
+    <div formArrayName="subjects">
+      <div
+        *ngFor="let subject of subjects.controls; let i = index"
+        class="form-row"
+      >
+        <ng-container [formGroup]="subject">
+          <div class="form-group col-md-9">
+            <label for="title">Title</label>
+            <textarea
+              class="form-control"
+              name="title"
+              formControlName="title"
+            ></textarea>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

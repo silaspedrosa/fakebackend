@@ -6,18 +6,24 @@ import { AppComponent } from "./app.component";
 import { MeetingsListComponent } from "./meetings-list/meetings-list.component";
 import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MeetingsFormComponent } from "./meetings-form/meetings-form.component";
-import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerComponent } from "./spinner/spinner.component";
 
 @NgModule({
-  declarations: [AppComponent, MeetingsListComponent, MeetingsFormComponent, SpinnerComponent],
+  declarations: [
+    AppComponent,
+    MeetingsListComponent,
+    MeetingsFormComponent,
+    SpinnerComponent
+  ],
   imports: [
     NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     // NgbModalModule
   ],
   providers: [],

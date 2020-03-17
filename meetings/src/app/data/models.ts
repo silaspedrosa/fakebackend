@@ -10,8 +10,7 @@ export interface Meeting {
 
 export interface Subject {
   id: number;
-  description: string;
-  decision: string;
+  title: string;
   meetingId: number;
 }
 
