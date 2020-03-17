@@ -1,16 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SubjectsListComponent } from './subjects-list.component';
+import { SubjectsListComponent } from "./subjects-list.component";
+import { NgbModule, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
-describe('SubjectsListComponent', () => {
+describe("SubjectsListComponent", () => {
   let component: SubjectsListComponent;
   let fixture: ComponentFixture<SubjectsListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubjectsListComponent ]
-    })
-    .compileComponents();
+      declarations: [SubjectsListComponent],
+      imports: [NgbModule],
+      providers: [NgbActiveModal]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('SubjectsListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

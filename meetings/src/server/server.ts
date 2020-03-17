@@ -14,8 +14,9 @@ const ApplicationSerializer = RestSerializer.extend({
   embed: true
 });
 
-export function makeServer() {
+export function makeServer(environmentName: "development" | "test") {
   return new Server({
+    environment: environmentName,
     serializers: {
       application: ApplicationSerializer,
       meeting: meetingSerializer(ApplicationSerializer),

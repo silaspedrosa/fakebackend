@@ -8,7 +8,7 @@ import { makeServer } from "./server/server";
 if (environment.production) {
   enableProdMode();
 } else {
-  makeServer();
+  makeServer("development");
 }
 
 platformBrowserDynamic()

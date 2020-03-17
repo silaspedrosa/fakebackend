@@ -1,16 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { NgbActiveModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { MeetingService } from "../data/api/meeting.service";
+import { MeetingsFormComponent } from "./meetings-form.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { MeetingsFormComponent } from './meetings-form.component';
-
-describe('MeetingsFormComponent', () => {
+describe("MeetingsFormComponent", () => {
   let component: MeetingsFormComponent;
   let fixture: ComponentFixture<MeetingsFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MeetingsFormComponent ]
-    })
-    .compileComponents();
+      declarations: [MeetingsFormComponent],
+      imports: [HttpClientModule, NgbModule, FormsModule, ReactiveFormsModule],
+      providers: [MeetingService, HttpClient, NgbActiveModal]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,7 @@ describe('MeetingsFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
