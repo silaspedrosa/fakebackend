@@ -1,21 +1,14 @@
-import {
-  Server,
-  RestSerializer,
-  Model,
-  Factory,
-  Response,
-  hasMany,
-  belongsTo,
-  trait,
-  association
-} from "miragejs";
-import { environment } from "../environments/environment";
 import faker from "faker";
-import { isAfter, subYears, differenceInYears } from "date-fns";
-import { meetingSerializer } from "./meetings/serializers";
+import { association, Factory, RestSerializer, Server } from "miragejs";
+import { environment } from "../environments/environment";
 import { MeetingFactory } from "./meetings/factories";
-import { meetingsRoutes } from "./meetings/routes";
 import { Meeting } from "./meetings/models";
+import { meetingsRoutes } from "./meetings/routes";
+import { meetingSerializer } from "./meetings/serializers";
+import { Subject } from "./subjects/models";
+import { subjectSerializer } from "./subjects/serializers";
+import { SubjectFactory } from "./subjects/factories";
+import { meetingsSeeds } from "./meetings/seeds";
 
 const ApplicationSerializer = RestSerializer.extend({
   embed: true
@@ -26,22 +19,15 @@ export function makeServer() {
     serializers: {
       application: ApplicationSerializer,
       meeting: meetingSerializer(ApplicationSerializer),
-      subject: ApplicationSerializer.extend({
-        include: ["meeting"]
-      })
+      subject: subjectSerializer(ApplicationSerializer)
     },
     models: {
       meeting: Meeting,
-      subject: Model.extend({
-        meeting: belongsTo()
-      })
+      subject: Subject
     },
     factories: {
       meeting: MeetingFactory,
-      subject: Factory.extend({
-        title: () => `${faker.hacker.phrase()}`,
-        meeting: association()
-      })
+      subject: SubjectFactory
     },
     routes() {
       this.urlPrefix = environment.apiUrl;
@@ -49,13 +35,10 @@ export function makeServer() {
       this.passthrough();
       this.timing = 1000;
 
-      // this.resource("subjects");
       meetingsRoutes(this);
     },
     seeds: server => {
-      server.createList("meeting", 10, "withSubjects");
-      server.createList("meeting", 10, "withSubjects");
-      // server.createList("meeting", 10);
+      meetingsSeeds(server);
     }
   });
 }
