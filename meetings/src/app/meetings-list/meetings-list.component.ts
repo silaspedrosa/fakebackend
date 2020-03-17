@@ -33,8 +33,12 @@ export class MeetingsListComponent implements OnInit {
     this.meetings = await this.meetingService.getAll(this.meetingQuery);
   }
 
+  async submitFilters() {
+    this.meetingQuery.page = 1;
+    await this.fetchData();
+  }
+
   async changePage(page: number) {
-    console.log("changePage", page);
     this.meetingQuery.page = page;
     await this.fetchData();
   }
@@ -43,8 +47,8 @@ export class MeetingsListComponent implements OnInit {
     const ref = this.ngbModal.open(MeetingsFormComponent);
     try {
       const result = await ref.result;
-      console.log("closed modal", result);
       if (result != null) {
+        this.meetingQuery.page = 1;
         await this.fetchData();
       }
     } catch (error) {}
