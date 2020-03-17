@@ -39,6 +39,7 @@ export function makeServer() {
     },
     seeds: server => {
       meetingsSeeds(server);
+      console.log(server.db.dump());
     }
   });
 }
