@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">
+    Meeting {{ meeting.date | date: "dd/MM/yyyy" }}
+  </h4>
+  <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <p>{{ meeting.description }}</p>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let subject of meeting.subjects">
+      {{ subject.title }}
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-dark" (click)="dismiss()">Ok</button>
+</div>

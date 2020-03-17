@@ -9,13 +9,15 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MeetingsFormComponent } from "./meetings-form/meetings-form.component";
 import { SpinnerComponent } from "./spinner/spinner.component";
+import { SubjectsListComponent } from "./subjects-list/subjects-list.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     MeetingsListComponent,
     MeetingsFormComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SubjectsListComponent
   ],
   imports: [
     NgbModule,
@@ -28,6 +30,6 @@ import { SpinnerComponent } from "./spinner/spinner.component";
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [MeetingsFormComponent]
+  entryComponents: [MeetingsFormComponent, SubjectsListComponent]
 })
 export class AppModule {}

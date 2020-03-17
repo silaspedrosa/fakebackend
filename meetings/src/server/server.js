@@ -49,10 +49,7 @@ export function makeServer() {
         })
       }),
       subject: Factory.extend({
-        title: () =>
-          `${faker.company.bsAdjective()} ${faker.hacker.verb} ${
-            faker.internet.domainName
-          }`,
+        title: () => `${faker.hacker.phrase()}`,
         meeting: association()
       })
     },

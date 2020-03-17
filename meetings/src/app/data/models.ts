@@ -11,7 +11,6 @@ export interface Meeting {
 export interface Subject {
   id: number;
   title: string;
-  meetingId: number;
 }
 
 export function toHttpParams(obj: any): HttpParams {

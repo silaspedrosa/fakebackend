@@ -4,6 +4,7 @@ import { RemoteData, InProgress } from "../data/utils";
 import { MeetingService } from "../data/api/meeting.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MeetingsFormComponent } from "../meetings-form/meetings-form.component";
+import { SubjectsListComponent } from "../subjects-list/subjects-list.component";
 
 @Component({
   selector: "app-meetings-list",
@@ -49,12 +50,11 @@ export class MeetingsListComponent implements OnInit {
     } catch (error) {}
   }
 
-  // async onMeetingClick(meeting: Meeting) {
-  //   try {
-  //     const result = await this.meetingService.getSubjects(meeting.id);
-  //     console.log(result);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  async onMeetingClick(meeting: Meeting) {
+    try {
+      const ref = this.ngbModal.open(SubjectsListComponent);
+      ref.componentInstance.meeting = meeting;
+      await ref.result;
+    } catch (error) {}
+  }
 }
