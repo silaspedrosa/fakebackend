@@ -41,7 +41,9 @@ export class MeetingService {
   async create(model: any): Promise<RemoteData<Meeting>> {
     try {
       const result = await this.http
-        .post<{ meeting: Meeting }>(`${environment.apiUrl}/api/meetings`, model)
+        .post<{ meeting: Meeting }>(`${environment.apiUrl}/api/meetings`, {
+          meeting: model
+        })
         .toPromise();
       return new Success<Meeting>(result.meeting);
     } catch (error) {

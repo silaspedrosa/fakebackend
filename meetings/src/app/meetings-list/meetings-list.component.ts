@@ -42,6 +42,7 @@ export class MeetingsListComponent implements OnInit {
     const ref = this.ngbModal.open(MeetingsFormComponent);
     try {
       const result = await ref.result;
+      console.log("closed modal", result);
       if (result != null) {
         await this.fetchData();
       }

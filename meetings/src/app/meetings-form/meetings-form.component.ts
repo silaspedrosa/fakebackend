@@ -10,10 +10,11 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./meetings-form.component.scss"]
 })
 export class MeetingsFormComponent implements OnInit {
-  model: { year: number; month: number; day: number } = {
+  model: { year: number; month: number; day: number; description: string } = {
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
-    day: new Date().getDate()
+    day: new Date().getDate(),
+    description: ""
   };
   request: RemoteData<Meeting>;
   error: string;
@@ -30,7 +31,7 @@ export class MeetingsFormComponent implements OnInit {
     this.request = new InProgress();
     const result = await this.meetingService.create(this.model);
     if (result instanceof Success) {
-      this.modal.close(result.data);
+      this.modal.close(result);
     } else if (result instanceof Failure) {
       this.error = result.error.message;
       this.request = null;
