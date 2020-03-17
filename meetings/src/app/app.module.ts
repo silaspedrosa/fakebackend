@@ -12,6 +12,7 @@ import { SpinnerComponent } from "./spinner/spinner.component";
 import { SubjectsListComponent } from "./subjects-list/subjects-list.component";
 import { MeetingsFiltersComponent } from './meetings-list/meetings-filters/meetings-filters.component';
 import { MeetingsTableComponent } from './meetings-list/meetings-table/meetings-table.component';
+import { MeetingsTitleComponent } from './meetings-list/meetings-title/meetings-title.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MeetingsTableComponent } from './meetings-list/meetings-table/meetings-
     SpinnerComponent,
     SubjectsListComponent,
     MeetingsFiltersComponent,
-    MeetingsTableComponent
+    MeetingsTableComponent,
+    MeetingsTitleComponent
   ],
   imports: [
     NgbModule,
